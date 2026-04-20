@@ -81,7 +81,7 @@ export default function Contact() {
               {[
                 { label: "Email", value: "dhaval.prajapati.824@gmail.com", href: "mailto:dhaval.prajapati.824@gmail.com" },
                 { label: "Phone", value: "+91 99091 55425", href: "tel:+919909155425" },
-                { label: "Location", value: "India", href: "#" },
+                { label: "Location", value: "Boriavi - 397310, Anand, Gujarat, India", href: "#" },
               ].map(item => (
                 <a key={item.label} href={item.href} style={{
                   display: "flex", justifyContent: "space-between", alignItems: "center",
