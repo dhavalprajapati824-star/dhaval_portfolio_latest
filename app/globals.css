@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/* @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,700&family=JetBrains+Mono:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap'); */
+
+:root {
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-mono:    'JetBrains Mono', monospace;
+  --font-sans:    'Syne', sans-serif;
+  --bg:           #07070f;
+  --bg2:          #0d0d1a;
+  --bg3:          #131325;
+  --surface:      #101020;
+  --surface2:     #181830;
+  --border:       rgba(180,160,255,0.07);
+  --border2:      rgba(180,160,255,0.14);
+  --accent:       #c4a962;
+  --accent-rgb:   196,169,98;
+  --accent2:      #7b9fcc;
+  --green:        #5db894;
+  --text:         #eee9e0;
+  --text-muted:   #706b63;
+  --text-subtle:  #38352f;
+  --shadow:       rgba(0,0,0,0.65);
+  --glass:        rgba(13,13,26,0.82);
+}
+
+[data-theme="light"] {
+  --bg:           #f4f1eb;
+  --bg2:          #ece8e0;
+  --bg3:          #e2ddd4;
+  --surface:      #f9f7f2;
+  --surface2:     #efeae0;
+  --border:       rgba(90,70,30,0.09);
+  --border2:      rgba(90,70,30,0.2);
+  --accent:       #8a6c28;
+  --accent-rgb:   138,108,40;
+  --accent2:      #3d6fa0;
+  --green:        #2a8a5e;
+  --text:         #18140c;
+  --text-muted:   #6a6050;
+  --text-subtle:  #b0a898;
+  --shadow:       rgba(0,0,0,0.09);
+  --glass:        rgba(244,241,235,0.88);
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  cursor: none;
+  transition: background 0.45s ease, color 0.35s ease;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); }
+
+::selection { background: rgba(196,169,98,0.22); color: var(--text); }
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9000;
+}
+
+/* Cursor */
+.cursor-dot {
+  width: 10px; height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed; pointer-events: none; z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.15s ease;
+}
+.cursor-ring {
+  width: 34px; height: 34px;
+  border: 1px solid rgba(var(--accent-rgb), 0.4);
+  border-radius: 50%;
+  position: fixed; pointer-events: none; z-index: 9998;
+  transition: transform 0.15s ease;
+}
