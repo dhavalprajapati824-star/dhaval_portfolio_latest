@@ -1,6 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
   const ref = useRef<HTMLDivElement>(null);
@@ -8,6 +9,33 @@ export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [focused, setFocused] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
+
+  const EMAILJS_SERVICE_ID  = "service_d84pm1a";   // ← paste here
+  const EMAILJS_TEMPLATE_ID = "template_dhsyctk";  // ← paste here
+  const EMAILJS_PUBLIC_KEY  = "NJX6PSFiQQog5MdZF";   // ← paste here
+
+  const sendEmail = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ID,
+      {
+        name: form.name,
+        email: form.email,
+        subject: form.subject,
+        message: form.message,
+      },
+      EMAILJS_PUBLIC_KEY
+    );
+
+    setSent(true);
+  } catch (error) {
+    console.error("Email send error:", error);
+    alert("Failed to send message");
+  }
+};
 
   const inputStyle = (field: string): React.CSSProperties => ({
     width: "100%", padding: "0.8rem 1rem",
@@ -127,7 +155,7 @@ export default function Contact() {
                 </p>
               </motion.div>
             ) : (
-              <form onSubmit={e => { e.preventDefault(); setSent(true); }}
+              <form onSubmit={sendEmail}
                 style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
 
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
