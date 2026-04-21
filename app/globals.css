@@ -88,3 +88,9 @@ body::after {
   position: fixed; pointer-events: none; z-index: 9998;
   transition: transform 0.15s ease;
 }
+
+/* Only hide cursor on mouse/trackpad devices */
+@media (pointer: fine) {
+  body { cursor: none; }
+  a, button, [data-cursor] { cursor: none; }
+}

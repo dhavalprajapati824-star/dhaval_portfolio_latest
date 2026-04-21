@@ -16,6 +16,11 @@ export default function Cursor() {
       }
     };
 
+    const touch =
+      window.matchMedia("(pointer: coarse)").matches  // finger/stylus input
+      || "ontouchstart" in window                      // iOS / Android
+      || navigator.maxTouchPoints > 0;                 // iPad / Surface
+
     const loop = () => {
       rx += (mx - rx) * 0.11;
       ry += (my - ry) * 0.11;
