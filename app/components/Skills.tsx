@@ -21,7 +21,7 @@ const skillGroups = [
     icon: "⬢",
     items: [
       "API Testing: Postman, Swagger",
-      "Bug Mgmt: Jira, Trello, Excel",
+      "Bug Management: Jira, Trello, Excel",
       "Test Plans, Cases & Processes",
       "Test Strategies & Coverage",
       "Issue Identification",
