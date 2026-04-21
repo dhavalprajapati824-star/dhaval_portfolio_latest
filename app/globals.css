@@ -80,6 +80,7 @@ body::after {
   position: fixed; pointer-events: none; z-index: 9999;
   mix-blend-mode: difference;
   transition: transform 0.15s ease;
+  /* cursor: none; */
 }
 .cursor-ring {
   width: 34px; height: 34px;
