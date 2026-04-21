@@ -32,7 +32,8 @@
   --surface2:     #efeae0;
   --border:       rgba(90,70,30,0.09);
   --border2:      rgba(90,70,30,0.2);
-  --accent:       #8a6c28;
+  /* --accent:       #8a6c28; */
+  --accent:       #1E3A5F;
   --accent-rgb:   138,108,40;
   --accent2:      #3d6fa0;
   --green:        #2a8a5e;
