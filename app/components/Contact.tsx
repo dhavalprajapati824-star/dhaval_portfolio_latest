@@ -30,7 +30,17 @@ export default function Contact() {
       EMAILJS_PUBLIC_KEY
     );
 
+    // ✅ Step 1: show success
     setSent(true);
+
+    // ✅ Step 2: clear form
+    setForm({ name: "", email: "", subject: "", message: "" });
+
+    // ✅ Step 3: optional auto reset after 4 sec
+    setTimeout(() => {
+      setSent(false);
+    }, 4000);
+
   } catch (error) {
     console.error("Email send error:", error);
     alert("Failed to send message");
