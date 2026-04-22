@@ -34,26 +34,69 @@ const projects = [
 ];
 
 export default function Projects() {
-  return (
-    <section id="projects" style={{
-    padding: "6rem 2rem",
-    background: "var(--bg)",
-    borderTop: "1px solid var(--border)",
-    borderBottom: "1px solid var(--border)",
-    scrollMarginTop: "100px", // ✅ agar header fixed hai
-    }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        
-        <h2 style={{
-          color: "var(--text)",
-          marginBottom: "3rem",
-          fontSize: "clamp(2rem,4vw,3rem)",
-          fontFamily: "var(--font-display)",
-          letterSpacing: "-0.02em"
-        }}>
-          Projects
-        </h2>
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
 
+  return (
+    <section
+      id="projects"
+      ref={ref}
+      style={{
+        padding: "9rem 3rem", // ✅ same as Experience
+        background: "var(--bg2)",
+        borderTop: "1px solid var(--border)",
+        position: "relative",
+        overflow: "hidden",
+        scrollMarginTop: "100px",
+      }}
+    >
+      {/* Ghost text */}
+      <div style={{
+        position: "absolute", top: "-12%", right: "-6%",
+        fontFamily: "var(--font-display)",
+        fontSize: "clamp(180px, 28vw, 380px)",
+        fontWeight: 700,
+        color: `rgba(var(--accent-rgb),0.025)`,
+        pointerEvents: "none",
+      }}>
+        PRO
+      </div>
+
+      <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 2 }}>
+
+        {/* ✅ SAME HEADER AS EXPERIENCE */}
+        <div style={{ marginBottom: "4rem" }}>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.65rem",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "var(--accent)",
+              marginBottom: "1rem"
+            }}
+          >
+            03 — Projects
+          </motion.p>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2, duration: 0.85 }}
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(2rem, 4vw, 3.4rem)",
+              fontWeight: 700,
+              color: "var(--text)",
+            }}
+          >
+            Featured Projects
+          </motion.h2>
+        </div>
+
+        {/* ✅ GRID */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
@@ -70,7 +113,7 @@ export default function Projects() {
 
 function ProjectCard({ project, index }: any) {
   const [hovered, setHovered] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true });
 
   return (
@@ -92,7 +135,7 @@ function ProjectCard({ project, index }: any) {
         overflow: "hidden",
       }}
     >
-      {/* Top Accent Line */}
+      {/* Top line */}
       <div style={{
         position: "absolute",
         top: 0,
@@ -104,16 +147,11 @@ function ProjectCard({ project, index }: any) {
       }} />
 
       {/* Top Row */}
-      <div style={{
-        display: "flex",
-        justifyContent: "space-between",
-        marginBottom: "1rem"
-      }}>
+      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
         <span style={{
           color: "var(--accent)",
           fontFamily: "var(--font-mono)",
           fontSize: "0.7rem",
-          letterSpacing: "0.1em"
         }}>
           {project.num}
         </span>
@@ -162,7 +200,6 @@ function ProjectCard({ project, index }: any) {
             border: "1px solid var(--border)",
             borderRadius: "2px",
             fontFamily: "var(--font-mono)",
-            letterSpacing: "0.05em"
           }}>
             {tag}
           </span>
@@ -170,4 +207,4 @@ function ProjectCard({ project, index }: any) {
       </div>
     </motion.div>
   );
-};
+}

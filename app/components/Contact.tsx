@@ -90,7 +90,7 @@ export default function Contact() {
             <motion.p
               initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
               style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "1rem" }}
-            >04 — Get in Touch</motion.p>
+            >05 — Get in Touch</motion.p>
 
             <motion.h2
               initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}

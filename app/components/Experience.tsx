@@ -52,7 +52,7 @@ export default function Experience() {
           <motion.p
             initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
             style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "1rem" }}
-          >03 — Professional Journey</motion.p>
+          >04 — Professional Journey</motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
