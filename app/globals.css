@@ -6,6 +6,8 @@
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-mono:    'JetBrains Mono', monospace;
   --font-sans:    'Syne', sans-serif;
+
+  /* ── Dark theme (default) ───────────────────────── */
   --bg:           #07070f;
   --bg2:          #0d0d1a;
   --bg3:          #131325;
@@ -13,8 +15,8 @@
   --surface2:     #181830;
   --border:       rgba(180,160,255,0.07);
   --border2:      rgba(180,160,255,0.14);
-  --accent:       #c4a962;
-  --accent-rgb:   196,169,98;
+  --accent:       #c4a962;       /* gold — stays in dark mode */
+  --accent-rgb:   196,169,98;    /* rgb of #c4a962            */
   --accent2:      #7b9fcc;
   --green:        #5db894;
   --text:         #eee9e0;
@@ -25,16 +27,18 @@
 }
 
 [data-theme="light"] {
+  /* ── Light theme ────────────────────────────────── */
   --bg:           #f4f1eb;
   --bg2:          #ece8e0;
   --bg3:          #e2ddd4;
   --surface:      #f9f7f2;
   --surface2:     #efeae0;
-  --border:       rgba(90,70,30,0.09);
-  --border2:      rgba(90,70,30,0.2);
-  /* --accent:       #8a6c28; */
-  --accent:       #1E3A5F;
-  --accent-rgb:   138,108,40;
+  --border:       rgba(19,26,52,0.08);   /* based on new accent */
+  --border2:      rgba(19,26,52,0.18);   /* based on new accent */
+
+  --accent:       #131a34;       /* ← your new navy accent      */
+  --accent-rgb:   19,26,52;      /* ← rgb of #131a34 (FIXED)    */
+
   --accent2:      #3d6fa0;
   --green:        #2a8a5e;
   --text:         #18140c;
@@ -53,15 +57,26 @@ body {
   color: var(--text);
   font-family: var(--font-sans);
   overflow-x: hidden;
-  cursor: none;
   transition: background 0.45s ease, color 0.35s ease;
+}
+
+/* Hide native cursor only on mouse/trackpad — NOT on touch/iPad */
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  [data-cursor] { cursor: none; }
 }
 
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--accent); }
 
-::selection { background: rgba(196,169,98,0.22); color: var(--text); }
+/* Selection highlight uses accent-rgb so it works in both themes */
+::selection {
+  background: rgba(var(--accent-rgb), 0.18);
+  color: var(--text);
+}
 
 /* Grain overlay */
 body::after {
@@ -73,7 +88,7 @@ body::after {
   z-index: 9000;
 }
 
-/* Cursor */
+/* Custom cursor elements */
 .cursor-dot {
   width: 10px; height: 10px;
   background: var(--accent);
@@ -81,18 +96,11 @@ body::after {
   position: fixed; pointer-events: none; z-index: 9999;
   mix-blend-mode: difference;
   transition: transform 0.15s ease;
-  /* cursor: none; */
-}
+};
 .cursor-ring {
   width: 34px; height: 34px;
   border: 1px solid rgba(var(--accent-rgb), 0.4);
   border-radius: 50%;
   position: fixed; pointer-events: none; z-index: 9998;
   transition: transform 0.15s ease;
-}
-
-/* Only hide cursor on mouse/trackpad devices */
-@media (pointer: fine) {
-  body { cursor: none; }
-  a, button, [data-cursor] { cursor: none; }
-}
+};
