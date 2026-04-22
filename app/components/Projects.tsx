@@ -52,7 +52,7 @@ export default function Projects() {
     >
       {/* Ghost text */}
       <div style={{
-        position: "absolute", top: "-12%", right: "-6%",
+        position: "absolute", top: "-12%", right: "-5%",
         fontFamily: "var(--font-display)",
         fontSize: "clamp(180px, 28vw, 380px)",
         fontWeight: 700,

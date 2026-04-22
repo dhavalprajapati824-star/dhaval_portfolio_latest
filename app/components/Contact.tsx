@@ -73,7 +73,7 @@ export default function Contact() {
     }}>
       {/* Background ghost */}
       <div style={{
-        position: "absolute", bottom: "-12%", right: "-5%",
+        position: "absolute", top: "-12%", right: "-5%",
         fontFamily: "var(--font-display)",
         fontSize: "clamp(130px, 20vw, 300px)",
         fontWeight: 700,
